@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Input from "../Input";
 import { FaWindowClose } from 'react-icons/fa';
 import { BsPencilSquare } from "react-icons/bs";
@@ -8,9 +8,12 @@ import { Link } from "react-router-dom";
 
 
 const TaskItem = ({taskName, taskCheck}) => {
+    const [update, setUpdate] = useContext(AppContext)
 
-    const [checked, setCheked] = useContext(AppContext);
+    const [checked, setCheked] = useState( );
     const [editinput, seteditInput] = useContext(AppContext);
+
+
 
     function setneedToDo(taskName){
         let taskList = loadDatos();
@@ -40,9 +43,11 @@ const TaskItem = ({taskName, taskCheck}) => {
     };
 
     function checkTaskState (e){
-        e.preventDefault();
-        setCheked({...checked, checked: !checked})
+        // e.preventDefault();
+        setCheked( !checked )
+        // console.log(checked)
         setneedToDo(taskName)
+        setUpdate({ update: true })
     }
 
     function editTask (e){

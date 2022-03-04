@@ -13,7 +13,8 @@ import EditTask from './components/EditTask';
 function App() {
 
   //useContext data
-  const [checked, setCheked] = useContext(AppContext);
+  // const [checked, setCheked] = useContext(AppContext)
+  const [update, setUpdate] = useContext(AppContext)
   const [editinput, seteditInput] = useContext(AppContext);
 
   //JSON Datos
@@ -21,12 +22,16 @@ function App() {
   const [submit, setSubmit] = useState(false);
 
 
-  useEffect(() => {
-    setInterval(() => {
-      var list = JSON.parse(localStorage.getItem('taskList')) || [];
-      (list != data && setdata(loadDatos()))
-    }, 500);
-  });
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     var list = JSON.parse(localStorage.getItem('taskList')) || [];
+  //     (list != data && setdata(loadDatos()))
+  //   }, 500);
+  // });
+
+  useEffect(()=>{
+    setdata(loadDatos())
+  }, [update])
 
   //Inputs states
   const [input, setinput] = useState('')
